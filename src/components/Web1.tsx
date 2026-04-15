@@ -1,11 +1,9 @@
-import Nav from "./Nav";
+
 
 const Web1 = () => {
   return (
-    <div>
-      <Nav />
-    </div>
-  );
-};
+    <div>Web1</div>
+  )
+}
 
-export default Web1;
+export default Web1
