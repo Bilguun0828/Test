@@ -31,48 +31,50 @@ export const programs = [
 ];
 
 export const programmingCourses = [
-    {
-        id: 1,
-        title: "HTML & CSS Foundations",
-        duration: "4 weeks",
-        lessons: "12 lessons",
-        level: "Beginner",
-        description:
-            "Learn how websites are structured and styled by building clean page layouts, cards, buttons, and responsive sections.",
-        highlights: [
-            "Create real page sections with HTML",
-            "Style layouts with modern CSS",
-            "Practice responsive design basics",
-        ],
-    },
-    {
-        id: 2,
-        title: "JavaScript Starter Lab",
-        duration: "5 weeks",
-        lessons: "15 lessons",
-        level: "Beginner to Intermediate",
-        description:
-            "Understand variables, functions, arrays, and DOM events by making interactive mini features that feel like real apps.",
-        highlights: [
-            "Work with click events and forms",
-            "Build small interactive widgets",
-            "Strengthen problem-solving logic",
-        ],
-    },
-    {
-        id: 3,
-        title: "React UI Builder",
-        duration: "6 weeks",
-        lessons: "18 lessons",
-        level: "Intermediate",
-        description:
-            "Turn ideas into reusable components and connect them into a polished frontend experience with practical React workflows.",
-        highlights: [
-            "Build reusable components",
-            "Pass props and manage simple state",
-            "Create a demo portfolio-ready project",
-        ],
-    },
+  {
+    id: 1,
+    title: "Strength Training",
+    duration: "6 weeks",
+    lessons: "18 guided sessions",
+    schedule: "Mon, Wed, Fri",
+    description:
+      "Build strength and muscle with a structured program...",
+    highlights: [
+      "Full-body starter routine",
+      "Safe form and technique guidance",
+      "Weekly progress tracking and adjustments",
+    ],
+  },
+
+  {
+    id: 2,
+    title: "Yoga Class",
+    duration: "5 weeks",
+    lessons: "15 sessions",
+    schedule: "Tue, Thu",
+    description:
+      "Improve flexibility and reduce stress...",
+    highlights: [
+      "Stretching and flexibility routines",
+      "Breathing techniques for relaxation",
+      "Beginner-friendly sessions with modifications",
+    ],
+  },
+
+  {
+    id: 3,
+    title: "Cardio Workout",
+    duration: "4 weeks",
+    lessons: "12 sessions",
+    schedule: "Weekend Plan",
+    description:
+      "Boost your endurance and improve your heart health...",
+    highlights: [
+      "Short, high-intensity workouts",
+      "Heart rate monitoring and improvement tips",
+      "Simple routines at home or outdoors",
+    ],
+  },
 ];
 
 export const trainers = [
