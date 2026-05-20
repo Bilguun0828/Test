@@ -12,8 +12,10 @@ interface Course {
 }
 
 interface ProgramModalProps {
+  onClose: () => void;
   onAddProgram: (course: Course) => void;
 }
+
 
 const ProgramModal: React.FC<ProgramModalProps> = ({
   onClose,
