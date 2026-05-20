@@ -76,21 +76,6 @@ export const programmingCourses = [
     ],
   },
 ];
-
-export const trainers = [
-    {
-        name: "Alex Morgan",
-        specialty: "Strength Coach",
-        image: AlexMorgan,
-    },
-    {
-        name: "Sophie Lee",
-        specialty: "Yoga Trainer",
-        image: SophieLee,
-    },
-];
-
-export const footerItems = ["About", "Classes", "Membership", "Support"];
 export const authContent = {
     signup: {
         eyebrow: "Join FitZone",
@@ -122,19 +107,75 @@ export const authContent = {
     },
 };
 export type AuthMode = "login" | "signup";
-export const activePrograms = [
+export const planDetails = [
     {
-      title: "Strength Training",
-      coach: "Alex Morgan",
-      schedule: "Mon, Wed, Fri",
-      completed: 8,
-      total: 12,
+        id: 1,
+        title: "Strength Training",
+        duration: "6 weeks",
+        schedule: "Mon, Wed, Fri",
+        goal: "Improve strength, posture, and total-body control.",
+        milestones: [
+            "Week 1-2: Learn foundational lifting form",
+            "Week 3-4: Increase resistance and consistency",
+            "Week 5-6: Track measurable strength gains",
+        ],
     },
     {
-      title: "Yoga Class",
-      coach: "Sophie Lee",
-      schedule: "Tue, Thu",
-      completed: 3,
-      total: 10,
+        id: 2,
+        title: "Yoga Class",
+        duration: "5 weeks",
+        schedule: "Tue, Thu",
+        goal: "Build flexibility, breath control, and recovery habits.",
+        milestones: [
+            "Week 1-2: Focus on mobility and breathing basics",
+            "Week 3-4: Improve stability and balance routines",
+            "Week 5: Create a calm personal recovery flow",
+        ],
     },
-  ];
+    {
+        id: 3,
+        title: "Cardio Workout",
+        duration: "4 weeks",
+        schedule: "Sat, Sun",
+        goal: "Boost endurance and create a sustainable cardio routine.",
+        milestones: [
+            "Week 1: Build a simple cardio habit",
+            "Week 2-3: Increase pace and interval tolerance",
+            "Week 4: Finish with stronger stamina and recovery",
+        ],
+    },
+];
+
+
+export const trainers = [
+    {
+        id: 1,
+        name: "Alex Morgan",
+        specialty: "Strength Coach",
+        image: AlexMorgan,
+        adviceTitle: "Train with consistency, not guesswork",
+        advice:
+            "Alex recommends keeping your workouts simple and trackable. Focus on clean form first, then increase intensity gradually over time.",
+        tips: [
+            "Start each week with one measurable strength goal",
+            "Rest enough between sessions to recover properly",
+            "Track reps, sets, and how strong you feel each workout",
+        ],
+    },
+    {
+        id: 2,
+        name: "Sophie Lee",
+        specialty: "Yoga Trainer",
+        image: SophieLee,
+        adviceTitle: "Progress feels better when your body feels supported",
+        advice:
+            "Sophie encourages students to combine movement with breath awareness. Her advice is to improve flexibility slowly and make recovery part of your routine.",
+        tips: [
+            "Use breathing to relax into each stretch",
+            "Practice short mobility sessions on non-training days",
+            "Focus on posture quality more than speed",
+        ],
+    },
+];
+
+export const footerItems = ["About", "Classes", "Membership", "Support"];

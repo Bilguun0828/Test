@@ -4,7 +4,6 @@ import AuthModal from "./AuthModal";
 import type { AuthMode } from "../../data/data3";
 import { menuLinks } from "../../data/data3";
 
-// Define the Props for the Topbar
 interface TopbarProps {
   onGoHome: () => void;
   onViewPrograms: () => void;
@@ -24,7 +23,7 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
       <nav className="bg-black border-b border-lime-900/30 relative z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           
-          {/* LOGO - Uses onGoHome */}
+          {/* LOGO */}
           <div
             className="text-2xl font-bold text-white cursor-pointer"
             onClick={onGoHome}
@@ -37,7 +36,7 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
             {menuLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={onGoHome} // Since it's a one-page style now, these lead home
+                onClick={onGoHome}
                 className="text-gray-300 hover:text-lime-500 transition-colors"
               >
                 {link.name}
@@ -49,10 +48,10 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
           <div className="flex items-center gap-4">
             
             {/* Desktop Auth Buttons */}
-            <div className="hidden md:flex gap-4">
+            <div className="hidden md:flex items-center gap-3">
               <button
-                onClick={onViewPrograms} // Uses the prop to show MyPrograms overlay
-                className="bg-transparent border border-gray-700 rounded-xl hover:border-gray-500 transition-colors px-8 py-3 text-sm font-bold text-white"
+                onClick={onViewPrograms}
+                className="h-11 px-6 flex items-center justify-center bg-transparent border border-gray-800 rounded-xl hover:border-gray-600 transition-colors text-sm font-bold text-white whitespace-nowrap"
               >
                 My Programs
               </button>
@@ -62,7 +61,7 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
                   setAuthMode("signup");
                   setOpenAuth(true);
                 }}
-                className="bg-lime-500 hover:bg-lime-600 transition-all rounded-full px-6 py-2 text-sm font-bold text-black"
+                className="h-11 px-6 flex items-center justify-center bg-[#A3E635] hover:bg-[#bbf746] transition-all rounded-full text-sm font-bold text-black whitespace-nowrap"
               >
                 Join Now
               </button>
@@ -72,7 +71,7 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
                   setAuthMode("login");
                   setOpenAuth(true);
                 }}
-                className="bg-gray-800 px-6 py-2 rounded-full text-sm font-bold text-white hover:bg-gray-700"
+                className="h-11 px-6 flex items-center justify-center bg-[#1F2937] hover:bg-gray-700 transition-colors rounded-full text-sm font-bold text-white whitespace-nowrap"
               >
                 Login
               </button>
@@ -92,7 +91,6 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
         {/* MOBILE MENU */}
         {open && (
           <div className="absolute top-full left-0 w-full bg-[#0B1120] p-6 flex flex-col gap-2 md:hidden border-b border-gray-800 shadow-2xl">
-            
             {menuLinks.map((link) => (
               <button
                 key={link.name}
@@ -113,7 +111,7 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
                    onViewPrograms();
                    setOpen(false);
                 }}
-                className="bg-transparent border border-gray-700 rounded-xl hover:border-gray-500 transition-colors px-8 py-3 text-sm font-bold text-white"
+                className="h-12 w-full flex items-center justify-center bg-transparent border border-gray-700 rounded-xl text-sm font-bold text-white"
               >
                 My Programs
               </button>
@@ -124,7 +122,7 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
                   setAuthMode("signup");
                   setOpenAuth(true);
                 }}
-                className="bg-lime-500 w-full py-4 rounded-xl font-bold text-black shadow-lg shadow-lime-500/10"
+                className="h-12 w-full flex items-center justify-center bg-[#A3E635] rounded-xl font-bold text-black shadow-lg shadow-lime-500/10 text-sm"
               >
                 Join Now
               </button>
@@ -135,7 +133,7 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
                   setAuthMode("login");
                   setOpenAuth(true);
                 }}
-                className="bg-gray-800 w-full py-4 rounded-xl font-bold text-white hover:bg-gray-700 transition-colors"
+                className="h-12 w-full flex items-center justify-center bg-gray-800 rounded-xl font-bold text-white hover:bg-gray-700 transition-colors text-sm"
               >
                 Login
               </button>
@@ -144,7 +142,6 @@ const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
         )}
       </nav>
 
-      {/* AUTH MODAL - Kept your original logic */}
       <AuthModal
         isOpen={openAuth}
         mode={authMode}
