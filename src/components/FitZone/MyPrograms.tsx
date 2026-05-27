@@ -144,11 +144,12 @@ const MyPrograms = ({
         ))}
       </div>
 
-      {/* POPUP MODAL CONTROL */}
+      /* POPUP MODAL CONTROL */
       {showModal && (
         <ProgramModal
           onClose={() => setShowModal(false)}
-          onRequireLogin={onRequireLogin} 
+          // ✅ FIX: If onRequireLogin is undefined, fallback to an empty functional scope safely
+          onRequireLogin={onRequireLogin || (() => {})} 
           existingProgramTitles={existingProgramTitles} 
           onAddProgram={(course) => {
             const alreadyAdded = myPrograms.some(
@@ -161,14 +162,12 @@ const MyPrograms = ({
               ...prev,
               {
                 title: course.title,
-                coach: "Programming Mentor", // ✅ FIX: Hardcoded fallback safely without checking course.coach
+                coach: "Programming Mentor", 
                 schedule: "Mon, Wed, Fri",
                 completed: 0,
                 total: Number(course.lessons) || 12, 
               },
             ]);
-            
-            // Kept open so you can keep adding more programs!
           }}
         />
       )}
