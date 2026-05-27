@@ -1,155 +1,90 @@
-import { useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
-import AuthModal from "./AuthModal";
-import type { AuthMode } from "../../data/data3";
-import { menuLinks } from "../../data/data3";
-
-interface TopbarProps {
+interface TopBarProps {
   onGoHome: () => void;
   onViewPrograms: () => void;
+  isLoggedIn: boolean;
+  userName: string;
+  onLogout: () => void;
+  onLoginClick: () => void;
+  onSignUpClick: () => void; // ✅ Mandated explicit SignUp callback
 }
 
-const Topbar = ({ onGoHome, onViewPrograms }: TopbarProps) => {
-  const [open, setOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<AuthMode>("login");
-  const [openAuth, setOpenAuth] = useState(false);
-
-  const toggleMode = () => {
-    setAuthMode((prev) => (prev === "login" ? "signup" : "login"));
-  };
-
+const TopBar = ({
+  onGoHome,
+  onViewPrograms,
+  isLoggedIn,
+  userName,
+  onLogout,
+  onLoginClick,
+  onSignUpClick,
+}: TopBarProps) => {
   return (
-    <>
-      <nav className="bg-black border-b border-lime-900/30 relative z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          
-          {/* LOGO */}
-          <div
-            className="text-2xl font-bold text-white cursor-pointer"
-            onClick={onGoHome}
-          >
-            Fitzone<span className="text-lime-500">.</span>
-          </div>
+    // ✅ Main Nav Bar: Uses a darker background/border for separation
+    <nav className="bg-[#040914] border-b border-gray-800/80 h-[76px] sticky top-0 z-40 px-6 lg:px-10 flex items-center justify-between font-sans">
+      
+      {/* BRAND LOGO: Explicit 'FitZone' text with the reference green/lime color */}
+      <div 
+        onClick={onGoHome} 
+        className="text-[#A3E635] text-2xl font-extrabold tracking-tight cursor-pointer"
+      >
+        FitZone
+      </div>
 
-          {/* DESKTOP LINKS */}
-          <div className="hidden md:flex gap-8 text-sm font-medium">
-            {menuLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={onGoHome}
-                className="text-gray-300 hover:text-lime-500 transition-colors"
-              >
-                {link.name}
-              </button>
-            ))}
-          </div>
+      {/* CENTER LINKS: Explicit text from reference, subtle styling */}
+      <div className="hidden md:flex items-center gap-7 lg:gap-9 text-sm font-medium text-gray-400">
+        <button onClick={onGoHome} className="hover:text-white transition-colors">Home</button>
+        <button onClick={onViewPrograms} className="hover:text-white transition-colors">Programs</button>
+        <span className="hover:text-white transition-colors cursor-pointer">Trainers</span>
+        <span className="hover:text-white transition-colors cursor-pointer">Pricing</span>
+        <span className="hover:text-white transition-colors cursor-pointer">Contact</span>
+      </div>
 
-          {/* RIGHT BUTTONS */}
-          <div className="flex items-center gap-4">
-            
-            {/* Desktop Auth Buttons */}
-            <div className="hidden md:flex items-center gap-3">
-              <button
-                onClick={onViewPrograms}
-                className="h-11 px-6 flex items-center justify-center bg-transparent border border-gray-800 rounded-xl hover:border-gray-600 transition-colors text-sm font-bold text-white whitespace-nowrap"
-              >
-                My Programs
-              </button>
-
-              <button
-                onClick={() => {
-                  setAuthMode("signup");
-                  setOpenAuth(true);
-                }}
-                className="h-11 px-6 flex items-center justify-center bg-[#A3E635] hover:bg-[#bbf746] transition-all rounded-full text-sm font-bold text-black whitespace-nowrap"
-              >
-                Join Now
-              </button>
-
-              <button
-                onClick={() => {
-                  setAuthMode("login");
-                  setOpenAuth(true);
-                }}
-                className="h-11 px-6 flex items-center justify-center bg-[#1F2937] hover:bg-gray-700 transition-colors rounded-full text-sm font-bold text-white whitespace-nowrap"
-              >
-                Login
-              </button>
-            </div>
-
-            {/* MOBILE MENU BUTTON */}
+      {/* RIGHT AUTH CONTROLS: Conditionally renders buttons based on login status */}
+      <div className="flex items-center gap-3.5">
+        {isLoggedIn ? (
+          // USER IS LOGGED IN STATE (Dashboard style)
+          <>
             <button
-              className="md:hidden text-lime-500 text-3xl flex items-center"
-              onClick={() => setOpen(!open)}
-              aria-label="Toggle Menu"
+              onClick={onViewPrograms}
+              className="border border-gray-800 hover:border-gray-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-all"
             >
-              {open ? <HiX /> : <HiMenu />}
+              My Programs
             </button>
-          </div>
-        </div>
 
-        {/* MOBILE MENU */}
-        {open && (
-          <div className="absolute top-full left-0 w-full bg-[#0B1120] p-6 flex flex-col gap-2 md:hidden border-b border-gray-800 shadow-2xl">
-            {menuLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => {
-                  onGoHome();
-                  setOpen(false);
-                }}
-                className="text-gray-300 text-lg font-medium py-4 border-b border-gray-800/50 hover:text-lime-500 transition-colors text-left"
-              >
-                {link.name}
-              </button>
-            ))}
-
-            {/* Mobile Auth Buttons */}
-            <div className="flex flex-col gap-3 mt-4">
-              <button
-                onClick={() => {
-                   onViewPrograms();
-                   setOpen(false);
-                }}
-                className="h-12 w-full flex items-center justify-center bg-transparent border border-gray-700 rounded-xl text-sm font-bold text-white"
-              >
-                My Programs
-              </button>
-              
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  setAuthMode("signup");
-                  setOpenAuth(true);
-                }}
-                className="h-12 w-full flex items-center justify-center bg-[#A3E635] rounded-xl font-bold text-black shadow-lg shadow-lime-500/10 text-sm"
-              >
-                Join Now
-              </button>
-
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  setAuthMode("login");
-                  setOpenAuth(true);
-                }}
-                className="h-12 w-full flex items-center justify-center bg-gray-800 rounded-xl font-bold text-white hover:bg-gray-700 transition-colors text-sm"
-              >
-                Login
-              </button>
+            {/* Profile Badge (Dynamically binds stored name) */}
+            <div className="bg-gray-900/80 border border-gray-800 text-gray-300 text-xs font-bold px-4 py-2.5 rounded-xl min-w-[50px] text-center shadow-inner">
+              {userName}
             </div>
-          </div>
-        )}
-      </nav>
 
-      <AuthModal
-        isOpen={openAuth}
-        mode={authMode}
-        onClose={() => setOpenAuth(false)}
-        toggleMode={toggleMode}
-      />
-    </>
+            <button
+              onClick={onLogout}
+              className="bg-[#A3E635] hover:bg-[#bbf746] text-black font-extrabold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          // USER IS LOGGED OUT STATE: Exact match to reference image
+          <>
+            {/* "Join Now" (SignUp) Button: Green background, black text, bold */}
+            <button 
+              onClick={onSignUpClick} 
+              className="h-10 px-5 flex items-center justify-center bg-[#A3E635] hover:bg-[#bbf746] text-black font-extrabold rounded-full text-sm transition-all shadow-lg shadow-lime-950/20 active:scale-95"
+            >
+              Join Now
+            </button>
+            
+            {/* "Login" Button: Minimal text link, bold */}
+            <button 
+              onClick={onLoginClick} 
+              className="h-10 px-4.5 flex items-center justify-center text-white font-bold hover:text-gray-300 rounded-full text-sm transition-colors active:scale-95"
+            >
+              Login
+            </button>
+          </>
+        )}
+      </div>
+    </nav>
   );
 };
 
-export default Topbar;
+export default TopBar;

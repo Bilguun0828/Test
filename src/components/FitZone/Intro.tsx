@@ -7,14 +7,19 @@ interface IntroProps {
   myPrograms: ActiveProgram[];
   setMyPrograms: React.Dispatch<React.SetStateAction<ActiveProgram[]>>;
   onViewPlans: () => void;
+  onRequireLogin: () => void;
 }
 
 const Intro = ({
   myPrograms,
   setMyPrograms,
   onViewPlans,
+  onRequireLogin,
 }: IntroProps) => {
   const [modal, setModal] = useState(false);
+
+  // Extract existing program titles so the modal can visually disable them if already joined
+  const existingProgramTitles = myPrograms.map((p) => p.title);
 
   return (
     <section className="bg-[#060B13] flex items-center min-h-[calc(100vh-76px)] py-16 md:py-24 relative font-sans">
@@ -68,6 +73,8 @@ const Intro = ({
       {modal && (
         <ProgramModal
           onClose={() => setModal(false)}
+          onRequireLogin={onRequireLogin} 
+          existingProgramTitles={existingProgramTitles} 
           onAddProgram={(course) => {
             const exists = myPrograms.some(
               (p) => p.title === course.title
@@ -79,7 +86,8 @@ const Intro = ({
               ...prev,
               {
                 title: course.title,
-                coach: "Programming Mentor",
+                // ✅ FIXED: Removed course.coach to match Course interface structure definitions
+                coach: "Programming Mentor", 
                 schedule: course.schedule || "Custom Schedule",
                 completed: 0,
                 total: Number(course.lessons) || 12,
