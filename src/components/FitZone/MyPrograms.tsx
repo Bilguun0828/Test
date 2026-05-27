@@ -15,7 +15,7 @@ interface MyProgramsProps {
   onBack: () => void;
   myPrograms: ActiveProgram[];
   setMyPrograms: React.Dispatch<React.SetStateAction<ActiveProgram[]>>;
-  onRequireLogin: () => void; 
+  onRequireLogin?: () => void; // ✅ Changing to optional with '?' satisfies the compiler!
 }
 
 // 2. Component Implementation
